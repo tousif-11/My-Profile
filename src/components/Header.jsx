@@ -1,3 +1,6 @@
+import { NavLink } from "react-router";
+
+
 
 
 const Footer = () => {
@@ -24,19 +27,20 @@ const Footer = () => {
         </div>
         <ul className="flex flex-col gap-8 font-semibold text-sm text-slate-900 dark:text-slate-50 lg:flex-row max-lg:p-6">
           <li>
-            <a href="#" className="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded" aria-current="page">Home</a>
+            <NavLink to="/" className={({ isActive }) => `${isActive ? "text-blue-700 dark:text-blue-400" : ""} hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded`}>Home</NavLink>
+
           </li>
           <li>
-            <a href="#" className="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">skills</a>
+            <NavLink to="/skills" className={({ isActive }) => `${isActive ? "text-blue-700 dark:text-blue-400" : ""} hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded`}>Skills</NavLink>
           </li>
           <li>
-            <a href="#" className="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">Experience</a>
+            <NavLink to="/experience" className={({ isActive }) => `${isActive ? "text-blue-700 dark:text-blue-400" : ""} hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded`}>Experience</NavLink>
           </li>
           <li>
-            <a href="#" className="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">About</a>
+            <NavLink to="/about" className={({ isActive }) => `${isActive ? "text-blue-700 dark:text-blue-400" : ""} hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded`}>About</NavLink>
           </li>
           <li>
-            <a href="#" className="hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">Contact</a>
+            <NavLink to="/contact" className={({ isActive }) => `${isActive ? "text-blue-700 dark:text-blue-400" : ""} hover:text-blue-700 dark:hover:text-blue-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded`}>Contact</NavLink>
           </li>
         </ul>
       </div>
