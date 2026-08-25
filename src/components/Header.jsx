@@ -6,7 +6,7 @@ import { NavLink } from "react-router";
 const Footer = () => {
     return (
        <header>
-  <nav className="flex py-2 px-4 md:px-8 bg-white border-b border-slate-300 dark:border-neutral-700 dark:bg-neutral-900 min-h-17 relative z-20" aria-label="Main navigation">
+  <nav className="flex py-2 px-4 md:px-8 bg-white border-b border-slate-300   dark:border-neutral-700 dark:bg-neutral-900 min-h-17 relative z-20" aria-label="Main navigation">
     <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 w-full">
       <a href="#" className="min-w-9 inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
         <span className="sr-only">Your Company</span>
