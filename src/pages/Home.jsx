@@ -11,7 +11,7 @@ const Home = () => {
           <p className="mt-5 max-w-xl text-base leading-7 text-slate-300">Explore my work, technical skills, and experience through this profile.</p>
         </div>
         <div className="relative mx-auto w-full max-w-xs">
-          <img src={profilePhoto} alt="Portrait of the developer" className="aspect-[4/5] w-full rounded-2xl object-cover" />
+          <img src={profilePhoto} alt="Portrait of the developer" className="aspect-4/5 w-full rounded-2xl object-cover" />
           <img src={avatar} alt="Developer avatar" className="absolute -bottom-4 -left-4 h-20 w-20 rounded-full border-4 border-slate-900 bg-white object-cover shadow-lg" />
         </div>
       </section>

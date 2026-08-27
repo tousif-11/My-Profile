@@ -6,14 +6,14 @@ import { NavLink } from "react-router";
 const Footer = () => {
     return (
        <header>
-  <nav className="flex py-2 px-4 md:px-8 bg-white border-b border-slate-300   dark:border-neutral-700 dark:bg-neutral-900 min-h-17 relative z-20" aria-label="Main navigation">
+  <nav className="flex py-2 px-4 md:px-8 bg-amber-50 border-b border-slate-300   dark:border-neutral-700 dark:bg-neutral-900 min-h-17 relative z-20" aria-label="Main navigation">
     <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 w-full">
       <a href="#" className="min-w-9 inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
         <span className="sr-only">Your Company</span>
         <img src="https://readymadeui.com/logo-alt.svg" alt="readymadeui logo" className="h-9 w-auto" />
       </a>
       <div id="collapseMenu" tabIndex={-1} className="hidden lg:block max-lg:bg-white dark:max-lg:bg-neutral-900 max-lg:border-l max-lg:border-slate-300 dark:max-lg:border-neutral-700 max-lg:w-1/2 max-lg:fixed max-lg:top-0 max-lg:right-0 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto max-sm:w-full z-50 outline-none">
-        <div className="py-2 px-4 flex justify-between items-center border-b border-slate-300 sticky top-0 bg-white dark:border-neutral-700 dark:bg-neutral-900 lg:hidden max-lg:min-h-17">
+        <div className="py-2 px-4 flex justify-between items-center border-b border-slate-300 sticky top-0 bg-amber-50 dark:border-neutral-700 dark:bg-neutral-900 lg:hidden max-lg:min-h-17">
           <a href="#" className="inline-block focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
             <span className="sr-only">Your Company</span>
             <img src="https://readymadeui.com/logo-alt.svg" alt="readymadeui logo dialog" className="h-9 w-auto" />
@@ -45,8 +45,7 @@ const Footer = () => {
         </ul>
       </div>
       <div className="flex items-center gap-4">
-        <a href="#" className="py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">Sign
-          up</a>
+        <NavLink to="/login" className="py-2 px-3.5 text-sm rounded-md font-semibold cursor-pointer text-white border border-blue-600 bg-blue-600 hover:bg-blue-700 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">LOGIN</NavLink>
         <button type="button" aria-controls="collapseMenu" aria-expanded="false" aria-haspopup="true" id="toggleOpen" className="cursor-pointer lg:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
           <span className="sr-only">Open main menu</span>
           <svg className="size-7 fill-slate-900 dark:fill-slate-50" aria-hidden="true" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
