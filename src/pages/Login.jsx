@@ -1,153 +1,103 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const Login = () => {
-
-
-  const initialValues = { username: "", email: "", password: "", confirmPassword: "",};
-  const [ formValues, setFormValues] = useState( initialValues);
+  const [formValues, setFormValues] = useState({ email: "", password: "" });
   const [formErrors, setFormErrors] = useState({});
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormValues((currentValues) => ({ ...currentValues, [name]: value }));
+    setFormErrors((currentErrors) => ({ ...currentErrors, [name]: "" }));
+    setIsSubmitted(false);
+  };
 
-  const handleChange = (e) => {
-    console.log(e.target);
-    const { name, value } = e.target;
-    setFormValues({...formValues, [name]: value});
-    console.log(formValues);
-    };
-   const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const errors = {};
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-  const errors = validate(formValues);
+    if (!formValues.email) {
+      errors.email = "Email is required.";
+    } else if (!emailPattern.test(formValues.email)) {
+      errors.email = "Enter a valid email address.";
+    }
 
-  setFormErrors(errors);
-  setIsSubmit(true);
-};
-    useEffect(() =>{
-      console.log(formErrors);
-      if(Object.keys(formErrors).length === 0 && isSubmit){
-        console.log(formValues);
-      };
-    },[formErrors]);
+    if (!formValues.password) {
+      errors.password = "Password is required.";
+    }
 
+    setFormErrors(errors);
+    setIsSubmitted(Object.keys(errors).length === 0);
+  };
 
-    const validate = (values) => {
-  const errors = {};
-
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-
-  if (!values.username) {
-    errors.username = "Username is required!";
-  }
-
-  if (!values.email) {
-    errors.email = "Email is required!";
-  } else if (!regex.test(values.email)) {
-    errors.email = "This is not a valid email format!";
-  }
-
-  if (!values.password) {
-    errors.password = "Password is required!";
-  } else if (values.password.length < 4) {
-    errors.password = "Password must be more than 4 characters!";
-  }
-
-  if (!values.confirmPassword) {
-    errors.confirmPassword = "Confirm password is required!";
-  } else if (values.confirmPassword !== values.password) {
-    errors.confirmPassword = "Passwords do not match!";
-  }
-
-  return errors;
-
-};
-
-    
-
-
-
- return (
-  <div className="mx-auto max-w-7xl min-h-180 flex justify-center">
-
-    {Object.keys(formErrors).length === 0 && isSubmit && (
-      <div className="ui message success">
-        Signed in successfully
-      </div>
-    )}
-
-    <form
-      onSubmit={handleSubmit}
-      className="mt-8 mb-8 w-xl rounded-xl bg-indigo-100"
-    >
-      <h1 className="text-2xl font-bold text-black mb-25 pt-25 flex justify-center items-center">
-        LOG IN
-      </h1>
-
-      {/* Username */}
-      <div>
-        <p>{formErrors.username}</p>
-
-        <input
-          type="text"
-          placeholder="Username"
-          name="username"
-          value={formValues.username}
-          onChange={handleChange}
-          className="border border-black ml-21 rounded-t-xl px-4 py-2 mb-4 w-100"
-        />
-      </div>
-
-      {/* Email */}
-      <div>
-        <p>{formErrors.email}</p>
-
-        <input
-          type="email"
-          placeholder="Email"
-          name="email"
-          value={formValues.email}
-          onChange={handleChange}
-          className="border border-black px-4 py-2 ml-21 mb-4 w-100"
-        />
-      </div>
-
-      {/* Password */}
-      <div>
-        <p>{formErrors.password}</p>
-
-        <input
-          type="password"
-          placeholder="Password"
-          name="password"
-          value={formValues.password}
-          onChange={handleChange}
-          className="border border-black px-4 ml-21 py-2 mb-4 w-100"
-        />
-      </div>
-
-      {/* Confirm Password */}
-      <div>
-        <p>{formErrors.confirmPassword}</p>
-
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          name="confirmPassword"
-          value={formValues.confirmPassword}
-          onChange={handleChange}
-          className="border border-black ml-21 px-4 py-2 mb-8 w-100 rounded-b-xl"
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 w-100 ml-21 hover:cursor-pointer font-bold"
+  return (
+    <main className="flex min-h-[calc(100vh-5rem)] items-center justify-center bg-slate-50 px-4 py-12">
+      <form
+        onSubmit={handleSubmit}
+        noValidate
+        className="w-full max-w-md rounded-lg border border-slate-200 bg-white p-8 shadow-sm sm:p-10"
       >
-        SUBMIT
-      </button>
-    </form>
-  </div>
-);
+        <div className="mb-8 text-center">
+          <h1 className="text-3xl font-bold tracking-tight text-slate-900">Welcome back</h1>
+          <p className="mt-2 text-sm text-slate-500">Sign in to continue to your profile</p>
+        </div>
+
+        {isSubmitted && (
+          <p className="mb-6 rounded-md bg-green-50 px-4 py-3 text-sm font-medium text-green-700" role="status">
+            Signed in successfully.
+          </p>
+        )}
+
+        <div className="space-y-5">
+          <div>
+            <label htmlFor="email" className="mb-2 block text-sm font-medium text-slate-700">
+              Email address
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              value={formValues.email}
+              onChange={handleChange}
+              aria-invalid={Boolean(formErrors.email)}
+              aria-describedby={formErrors.email ? "email-error" : undefined}
+              className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+            />
+            {formErrors.email && <p id="email-error" className="mt-2 text-sm text-red-600">{formErrors.email}</p>}
+          </div>
+
+          <div>
+            <div className="mb-2 flex items-center justify-between gap-4">
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700">Password</label>
+              <a href="#forgot-password" className="text-sm font-medium text-blue-600 hover:text-blue-700">Forgot password?</a>
+            </div>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              autoComplete="current-password"
+              value={formValues.password}
+              onChange={handleChange}
+              aria-invalid={Boolean(formErrors.password)}
+              aria-describedby={formErrors.password ? "password-error" : undefined}
+              className="w-full rounded-md border border-slate-300 px-3 py-2.5 text-slate-900 outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-100"
+            />
+            {formErrors.password && <p id="password-error" className="mt-2 text-sm text-red-600">{formErrors.password}</p>}
+          </div>
+        </div>
+
+        <button type="submit" className="mt-7 w-full rounded-md bg-blue-600 px-4 py-2.5 font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+          Sign in
+        </button>
+
+        <p className="mt-6 text-center text-sm text-slate-500">
+          New here? <a href="#create-account" className="font-medium text-blue-600 hover:text-blue-700">Create an account</a>
+        </p>
+      </form>
+    </main>
+  );
 };
 
 export default Login;
